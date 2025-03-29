@@ -6,10 +6,103 @@
   <script src="bundle.js" async></script>
 </head>
 <body>
-  <h1 data-controller="example"></h1>
-  <div data-controller="hello">
-    <input data-hello-target="name" type="text">
-    <button data-action="click->hello#greet">Greet</button>
+  <div class="app" data-controller="app">
+    <div class="logo"></div>
+    <div class="grid">
+      <div style="grid-area: lastGames;" class="grid__widget">
+        <h3>Останні матчі</h3>
+        <div class="last-games">
+          <div class="last-games__row">
+            <div data-controller="players"></div>
+            <!-- <div class="last-games__cell" *ngFor="let player of players">
+              <span [style.color]="playersColors[player]">
+                {{ player }}
+              </span>
+            </div> -->
+          </div>
+          <div class="last-games__row" *ngFor="let game of last3Games">
+            <div class="last-games__cell" *ngFor="let player of players" [class.winner]="isWinner(game, player)">
+              <ng-container *ngIf="getPlayerStatsInGame(player, game)?.corporation as corporation; else emptyRow">
+                <ng-container *ngIf="getPlayerStatsInGame(player, game)?.VP as VP">
+                  <div class="last-games__corp">
+                    {{ corporation }}
+                  </div>
+                  <div class="last-games__vp">
+                    {{ VP }}
+                  </div>
+                </ng-container>
+              </ng-container>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div [style.grid-area]="'players'" class="grid__widget">
+        <h3>Гравці</h3>
+        <div class="chart-box">
+          <ng-container *ngFor="let player of sortByWinRate(players)">
+            <ng-container [ngTemplateOutlet]="column" [ngTemplateOutletContext]="{
+                winRate: getWinRate(player),
+                color: playersColors[player],
+                name: player,
+                won: gamesWon(player),
+                played: gamesPlayed(player)
+              }">
+            </ng-container>
+          </ng-container>
+        </div>
+      </div>
+      <div [style.grid-area]="'topScore'" class="grid__widget">
+        <h3>Рекорд</h3>
+        <div class="top-score">
+          <div class="top-score__names">
+            <span [style.color]="playersColors[getTopPlayer().name]">
+              {{ getTopPlayer().name }}
+            </span>
+            &nbsp;+&nbsp;
+            <span [style.color]="primaryColor">
+              {{ getTopPlayer().corporation }}
+            </span>
+          </div>
+          <div class="top-score__number">
+            {{ getTopScore() }}
+          </div>
+        </div>
+      </div>
+      <div [style.grid-area]="'corporations'" class="grid__widget">
+        <h3>Корпорації</h3>
+        <div class="chart-box">
+          <ng-container *ngFor="let corporation of sortByWinRate(corporations)">
+            <ng-container [ngTemplateOutlet]="column" [ngTemplateOutletContext]="{
+                winRate: getWinRate(corporation),
+                color: primaryColor,
+                name: corporation,
+                won: gamesWon(corporation),
+                played: gamesPlayed(corporation)
+              }">
+            </ng-container>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+
+    <ng-template #column let-winRate="winRate" let-color="color" let-name="name" let-won="won" let-played="played">
+      <div class="column">
+        <div class="text-content ta-center" [style.color]="color">
+          {{ name }}
+        </div>
+        <div class="column__data-viz" [style.background-color]="color" [style.height]="winRate * 2.5 + 'px'"></div>
+        <div class="text-content">
+          {{ winRate }}%
+        </div>
+        <div class="text-content">
+          {{ won }}&nbsp;/&nbsp;{{ played }}
+        </div>
+      </div>
+    </ng-template>
+
+    <ng-template #emptyRow>
+      <span>-</span>
+    </ng-template>
   </div>
 </body>
 </html>
