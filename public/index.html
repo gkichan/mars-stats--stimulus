@@ -12,27 +12,9 @@
       <div style="grid-area: lastGames;" class="grid__widget">
         <h3>Останні матчі</h3>
         <div class="last-games">
-          <div class="last-games__row">
-            <div data-controller="players"></div>
-            <!-- <div class="last-games__cell" *ngFor="let player of players">
-              <span [style.color]="playersColors[player]">
-                {{ player }}
-              </span>
-            </div> -->
+          <div class="last-games__row" data-controller="players">
           </div>
-          <div class="last-games__row" *ngFor="let game of last3Games">
-            <div class="last-games__cell" *ngFor="let player of players" [class.winner]="isWinner(game, player)">
-              <ng-container *ngIf="getPlayerStatsInGame(player, game)?.corporation as corporation; else emptyRow">
-                <ng-container *ngIf="getPlayerStatsInGame(player, game)?.VP as VP">
-                  <div class="last-games__corp">
-                    {{ corporation }}
-                  </div>
-                  <div class="last-games__vp">
-                    {{ VP }}
-                  </div>
-                </ng-container>
-              </ng-container>
-            </div>
+          <div data-controller="lastGames">
           </div>
         </div>
       </div>

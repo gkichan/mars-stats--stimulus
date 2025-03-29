@@ -1,4 +1,4 @@
-import {Corporation, Game, PlayerName} from './models';
+import {Corporation, Game, PlayerName} from "./models.ts";
 
 // const otherGames = [
 //   [
@@ -1446,6 +1446,23 @@ export const games: Game[] = [
       name: PlayerName.Karina,
       corporation: Corporation.ManuTech,
       VP: 79
+    }
+  ],
+  [
+    {
+      name: PlayerName.Viktor,
+      corporation: Corporation.Teractor,
+      VP: 66
+    },
+    {
+      name: PlayerName.Eugene,
+      corporation: Corporation.ArcadianCommunities,
+      VP: 73
+    },
+    {
+      name: PlayerName.Karina,
+      corporation: Corporation.Helion,
+      VP: 73
     }
   ]
 ];
