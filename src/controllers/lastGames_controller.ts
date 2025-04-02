@@ -1,7 +1,7 @@
 import { Controller } from "@hotwired/stimulus"
 import { Game, PlayerName, Player } from "../utils/models.ts";
 import { games } from "../utils/data.ts";
-import { isWinner } from "../utils/helpers.ts";
+import { getPlayers, isWinner } from "../utils/helpers.ts";
 
 export default class extends Controller {
   connect() {
@@ -23,7 +23,7 @@ export default class extends Controller {
   }
 
   renderGameRow(game: Game): string {
-    return Object.values(PlayerName)
+    return getPlayers()
       .map((playerName: PlayerName) => this.renderPlayerInGame(game, playerName))
       .join('')
   }
