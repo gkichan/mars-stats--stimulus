@@ -159,3 +159,16 @@ body {
     flex-direction: column;
  }
 }
+::-webkit-scrollbar {
+  width: 4px;
+  border: 1px solid rgb(100, 197, 166);
+  height: 8px;
+}
+::-webkit-scrollbar-thumb {
+  border-radius: 0;
+  background: rgb(100, 197, 166);
+}
+::-webkit-scrollbar-track {
+  border-radius: 0;
+  background: rgba(100, 197, 166, 0.15);
+}
