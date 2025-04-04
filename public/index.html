@@ -2,6 +2,7 @@
 <html>
 <head>
   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="main.css">
   <script src="bundle.js" async></script>
 </head>
@@ -28,37 +29,12 @@
         <div class="top-score" data-controller="topScore">
         </div>
       </div>
-      <div [style.grid-area]="'corporations'" class="grid__widget">
+      <div style="grid-area: corporations" class="grid__widget">
         <h3>Корпорації</h3>
-        <div class="chart-box">
-          <ng-container *ngFor="let corporation of sortByWinRate(corporations)">
-            <ng-container [ngTemplateOutlet]="column" [ngTemplateOutletContext]="{
-                winRate: getWinRate(corporation),
-                color: primaryColor,
-                name: corporation,
-                won: gamesWon(corporation),
-                played: gamesPlayed(corporation)
-              }">
-            </ng-container>
-          </ng-container>
+        <div class="chart-box" data-controller="corporations">
         </div>
       </div>
     </div>
-
-    <ng-template #column let-winRate="winRate" let-color="color" let-name="name" let-won="won" let-played="played">
-      <div class="column">
-        <div class="text-content ta-center" [style.color]="color">
-          {{ name }}
-        </div>
-        <div class="column__data-viz" [style.background-color]="color" [style.height]="winRate * 2.5 + 'px'"></div>
-        <div class="text-content">
-          {{ winRate }}%
-        </div>
-        <div class="text-content">
-          {{ won }}&nbsp;/&nbsp;{{ played }}
-        </div>
-      </div>
-    </ng-template>
   </div>
 </body>
 </html>

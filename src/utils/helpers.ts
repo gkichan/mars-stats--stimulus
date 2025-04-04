@@ -5,6 +5,10 @@ export function getPlayers(): PlayerName[] {
   return Object.values(PlayerName);
 }
 
+export function getCorporations(): Corporation[] {
+  return Object.values(Corporation);
+}
+
 export function isWinner(game: Game, entityName: PlayerName | Corporation): boolean {
   const maxVP = Math.max(...game.map((player: Player) => player.VP));  
 
