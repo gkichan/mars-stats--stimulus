@@ -5,7 +5,8 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "build": "webpack --config webpack.config.js"
   },
   "engines": {
     "node": ">=11"
@@ -22,5 +23,8 @@
     "express": "^4.17.1",
     "webpack": "^5.87.0",
     "webpack-dev-middleware": "^3.7.2"
+  },
+  "devDependencies": {
+    "webpack-cli": "^6.0.1"
   }
 }
