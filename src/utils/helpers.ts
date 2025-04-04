@@ -42,3 +42,15 @@ function isInGame(game: Game, entityName: any): boolean {
     return Object.values(player).includes(entityName);
   })
 }
+
+export function getTopPlayer(): Player {
+  return <Player> merge(games).find(({VP}) => VP === getTopScore());
+}
+
+export function getTopScore(): number {
+  return Math.max(...merge(games).map(({VP}) => VP));
+}
+
+function merge<T>(arr: T[][]): T[] {
+  return arr.reduce((acc: T[], next: T[]) => ([...acc, ...next]), []);
+}

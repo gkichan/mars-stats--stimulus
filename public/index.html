@@ -21,33 +21,11 @@
       <div style="grid-area: players" class="grid__widget">
         <h3>Гравці</h3>
         <div class="chart-box" data-controller="players">
-          <!-- <ng-container *ngFor="let player of sortByWinRate(players)">
-            <ng-container [ngTemplateOutlet]="column" [ngTemplateOutletContext]="{
-                winRate: getWinRate(player),
-                color: playersColors[player],
-                name: player,
-                won: gamesWon(player),
-                played: gamesPlayed(player)
-              }">
-            </ng-container>
-          </ng-container> -->
         </div>
       </div>
-      <div [style.grid-area]="'topScore'" class="grid__widget">
+      <div style="grid-area: topScore" class="grid__widget">
         <h3>Рекорд</h3>
-        <div class="top-score">
-          <div class="top-score__names">
-            <span [style.color]="playersColors[getTopPlayer().name]">
-              {{ getTopPlayer().name }}
-            </span>
-            &nbsp;+&nbsp;
-            <span [style.color]="primaryColor">
-              {{ getTopPlayer().corporation }}
-            </span>
-          </div>
-          <div class="top-score__number">
-            {{ getTopScore() }}
-          </div>
+        <div class="top-score" data-controller="topScore">
         </div>
       </div>
       <div [style.grid-area]="'corporations'" class="grid__widget">
